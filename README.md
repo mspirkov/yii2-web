@@ -25,11 +25,24 @@ or add
 
 to the `require` section of your `composer.json` file.
 
-## Usage
+## Components
 
 ### Request
 
 A wrapper for `\yii\web\Request` for easier handling of **GET** and **POST** parameters.
+
+It contains the following methods:
+
+- `getGetInt` - gets the value of a **GET** parameter by its name and tries to convert it to an integer.
+- `getGetFloat` - gets the value of the **GET** parameter by its name and tries to convert it to a floating-point number.
+- `getGetBool` - gets the value of the **GET** parameter by its name and tries to convert it to a boolean.
+- `getGetString` - gets the value of the **GET** parameter by its name and tries to convert it to a string.
+- `getGetArray` - gets the value of the **GET** parameter by its name and tries to convert it to an array.
+- `getPostInt` - gets the value of a **POST** parameter by its name and tries to convert it to an integer.
+- `getPostFloat` - gets the value of the **POST** parameter by its name and tries to convert it to a floating-point number.
+- `getPostBool` - gets the value of the **POST** parameter by its name and tries to convert it to a boolean.
+- `getPostString` - gets the value of the **POST** parameter by its name and tries to convert it to a string.
+- `getPostArray` - gets the value of the **POST** parameter by its name and checks that the value is an array.
 
 #### Configuration
 
@@ -123,7 +136,15 @@ This class encapsulates the logic for adding, removing, checking existence, and 
 and `\yii\web\Response` objects. It simplifies working with cookies by abstracting implementation details and providing more
 convenient methods.
 
-Usage example:
+It contains the following methods:
+
+- `has` - checks if a cookie with the specified name exists.
+- `get` - returns the cookie with the specified name.
+- `add` - adds a cookie to the response.
+- `remove` - removes a cookie.
+- `removeAll` - removes all cookies.
+
+#### Usage example:
 
 ```php
 class CookieManager extends \MSpirkov\Yii2\Web\CookieManager
