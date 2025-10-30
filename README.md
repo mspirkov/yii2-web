@@ -166,7 +166,7 @@ class ExampleService
         private readonly CookieManager $cookieManager,
     ) {}
 
-    public function doSomething()
+    public function doSomething(): void
     {
         $this->cookieManager->add([
             'name' => 'someCookieName',
