@@ -58,6 +58,7 @@ return [
     'components' => [
         'request' => [
             'class' => Request::class,
+            ...
         ],
         ...
     ],
