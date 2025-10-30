@@ -1,0 +1,9 @@
+name: yii2-web-tests
+services:
+  app:
+    container_name: yii2-web-tests-app
+    build: .
+    volumes:
+      - ../:/app
+    command: tail -f /dev/null
+    working_dir: /app
