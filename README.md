@@ -114,15 +114,9 @@ class Controller extends \yii\web\Controller
 ```php
 class ProductController extends Controller
 {
-  /**
-   * @return array{success: bool, message?: string}
-   */
   public function actionDelete(): array
   {
     $this->response->format = Response::FORMAT_JSON;
-    if (!$this->request->isAjax) {
-        throw new BadRequestHttpException();
-    }
 
     return $this->service->delete($this->request->getPostInt('id'));
   }
