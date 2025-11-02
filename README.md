@@ -114,12 +114,21 @@ class Controller extends \yii\web\Controller
 ```php
 class ProductController extends Controller
 {
-  public function actionDelete(): array
-  {
-    $this->response->format = Response::FORMAT_JSON;
+    public function __construct(
+        string $id,
+        Module $module,
+        private readonly ProductService $service,
+        array $config = [],
+    ) {
+        parent::__construct($id, $module, $config);
+    }
 
-    return $this->service->delete($this->request->getPostInt('id'));
-  }
+    public function actionDelete(): array
+    {
+        $this->response->format = Response::FORMAT_JSON;
+
+        return $this->service->delete($this->request->getPostInt('id'));
+    }
 }
 ```
 
