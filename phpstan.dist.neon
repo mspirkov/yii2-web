@@ -1,9 +1,39 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/shipmonk/phpstan-rules/rules.neon
+
 parameters:
     level: max
 
     paths:
         - src
         - tests
+
+    checkBenevolentUnionTypes: true
+    checkMissingCallableSignature: true
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true
+    reportPossiblyNonexistentConstantArrayOffset: true
+    reportMaybesInPropertyPhpDocTypes: false
+
+    strictRules:
+        booleansInConditions: false
+        booleansInLoopConditions: false
+        disallowedEmpty: false
+        disallowedShortTernary: false
+
+    shipmonkRules:
+        forbidNullInBinaryOperations:
+            enabled: false
+        forbidCheckedExceptionInCallable:
+            enabled: false
+        forbidNullInInterpolatedString:
+            enabled: false
+        forbidCast:
+            enabled: false
+        enforceReadonlyPublicProperty:
+            enabled: false
+        enforceListReturn:
+            enabled: false
 
     bootstrapFiles:
         - phpstan/bootstrap.php
@@ -14,3 +44,16 @@ parameters:
         - YII_ENV_DEV
         - YII_ENV_PROD
         - YII_ENV_TEST
+
+    ignoreErrors:
+        # TODO: Remove after updating shipmonk/phpstan-rules
+        -
+            message: '#^The \@return phpdoc does not contain null\, but native return type does#'
+            count: 1
+            path: src/Request.php
+
+        -
+            message: '#^Missing native return typehint bool\|float\|int\|null#'
+            count: 1
+            reportUnmatched: false # fails only for PHP > 7.4
+            path: src/Request.php
