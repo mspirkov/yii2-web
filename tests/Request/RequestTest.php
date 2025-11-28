@@ -31,7 +31,7 @@ class RequestTest extends TestCase
         ?int $expectedResult
     ): void {
         $this->setQueryParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getGetInt($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getGetInt($paramName, $defaultValue));
     }
 
     /**
@@ -58,7 +58,7 @@ class RequestTest extends TestCase
         ?int $expectedResult
     ): void {
         $this->setBodyParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getPostInt($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getPostInt($paramName, $defaultValue));
     }
 
     /**
@@ -85,7 +85,7 @@ class RequestTest extends TestCase
         ?float $expectedResult
     ): void {
         $this->setQueryParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getGetFloat($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getGetFloat($paramName, $defaultValue));
     }
 
     /**
@@ -112,7 +112,7 @@ class RequestTest extends TestCase
         ?float $expectedResult
     ): void {
         $this->setBodyParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getPostFloat($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getPostFloat($paramName, $defaultValue));
     }
 
     /**
@@ -139,7 +139,7 @@ class RequestTest extends TestCase
         ?bool $expectedResult
     ): void {
         $this->setQueryParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getGetBool($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getGetBool($paramName, $defaultValue));
     }
 
     /**
@@ -166,7 +166,7 @@ class RequestTest extends TestCase
         ?bool $expectedResult
     ): void {
         $this->setBodyParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getPostBool($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getPostBool($paramName, $defaultValue));
     }
 
     /**
@@ -193,7 +193,7 @@ class RequestTest extends TestCase
         ?string $expectedResult
     ): void {
         $this->setQueryParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getGetString($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getGetString($paramName, $defaultValue));
     }
 
     /**
@@ -220,7 +220,7 @@ class RequestTest extends TestCase
         ?string $expectedResult
     ): void {
         $this->setBodyParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getPostString($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getPostString($paramName, $defaultValue));
     }
 
     /**
@@ -249,7 +249,7 @@ class RequestTest extends TestCase
         ?array $expectedResult
     ): void {
         $this->setQueryParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getGetArray($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getGetArray($paramName, $defaultValue));
     }
 
     /**
@@ -266,7 +266,7 @@ class RequestTest extends TestCase
         ?array $expectedResult
     ): void {
         $this->setBodyParams($paramValue);
-        $this->assertSame($expectedResult, $this->request->getPostArray($paramName, $defaultValue));
+        self::assertSame($expectedResult, $this->request->getPostArray($paramName, $defaultValue));
     }
 
     /**

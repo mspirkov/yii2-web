@@ -79,10 +79,10 @@ class CookieManagerTest extends TestCase
             $cookie3->name => $cookie3,
         ]);
 
-        $this->assertTrue($this->cookieManager->has($cookie1->name));
-        $this->assertFalse($this->cookieManager->has($cookie2->name));
-        $this->assertFalse($this->cookieManager->has($cookie3->name));
-        $this->assertFalse($this->cookieManager->has(self::NON_EXISTENT_COOKIE_NAME));
+        self::assertTrue($this->cookieManager->has($cookie1->name));
+        self::assertFalse($this->cookieManager->has($cookie2->name));
+        self::assertFalse($this->cookieManager->has($cookie3->name));
+        self::assertFalse($this->cookieManager->has(self::NON_EXISTENT_COOKIE_NAME));
     }
 
     public function testHas(): void
@@ -93,9 +93,9 @@ class CookieManagerTest extends TestCase
         $cookieName2 = 'testHas2';
         $_COOKIE[$cookieName2] = '';
 
-        $this->assertTrue($this->cookieManager->has($cookieName1, false));
-        $this->assertFalse($this->cookieManager->has($cookieName2, false));
-        $this->assertFalse($this->cookieManager->has('', false));
+        self::assertTrue($this->cookieManager->has($cookieName1, false));
+        self::assertFalse($this->cookieManager->has($cookieName2, false));
+        self::assertFalse($this->cookieManager->has('', false));
     }
 
     public function testGetFromRequest(): void
@@ -115,9 +115,9 @@ class CookieManagerTest extends TestCase
             $cookie2->name => $cookie2,
         ]);
 
-        $this->assertSameCookie($cookie1, $this->cookieManager->get($cookie1->name));
-        $this->assertSameCookie($cookie2, $this->cookieManager->get($cookie2->name));
-        $this->assertNull($this->cookieManager->get(self::NON_EXISTENT_COOKIE_NAME));
+        self::assertSameCookie($cookie1, $this->cookieManager->get($cookie1->name));
+        self::assertSameCookie($cookie2, $this->cookieManager->get($cookie2->name));
+        self::assertNull($this->cookieManager->get(self::NON_EXISTENT_COOKIE_NAME));
     }
 
     public function testGet(): void
@@ -140,9 +140,9 @@ class CookieManagerTest extends TestCase
             'expire' => null,
         ]);
 
-        $this->assertSameCookie($expectedCookie1, $this->cookieManager->get($cookieName1, false));
-        $this->assertSameCookie($expectedCookie2, $this->cookieManager->get($cookieName2, false));
-        $this->assertNull($this->cookieManager->get(self::NON_EXISTENT_COOKIE_NAME, false));
+        self::assertSameCookie($expectedCookie1, $this->cookieManager->get($cookieName1, false));
+        self::assertSameCookie($expectedCookie2, $this->cookieManager->get($cookieName2, false));
+        self::assertNull($this->cookieManager->get(self::NON_EXISTENT_COOKIE_NAME, false));
     }
 
     public function testAddByCookieData(): void
@@ -156,8 +156,8 @@ class CookieManagerTest extends TestCase
 
         $expectedCookie = new Cookie($cookieData);
 
-        $this->assertSame(1, $this->response->cookies->count);
-        $this->assertSameCookie($expectedCookie, $this->response->cookies->get($cookieData['name']));
+        self::assertSame(1, $this->response->cookies->count);
+        self::assertSameCookie($expectedCookie, $this->response->cookies->get($cookieData['name']));
     }
 
     public function testAddByCookieObject(): void
@@ -169,8 +169,8 @@ class CookieManagerTest extends TestCase
 
         $this->cookieManager->add($cookie);
 
-        $this->assertSame(1, $this->response->cookies->count);
-        $this->assertSameCookie($cookie, $this->response->cookies->get($cookie->name));
+        self::assertSame(1, $this->response->cookies->count);
+        self::assertSameCookie($cookie, $this->response->cookies->get($cookie->name));
     }
 
     public function testRemoveFromBrowserByObject(): void
@@ -191,8 +191,8 @@ class CookieManagerTest extends TestCase
             'expire' => 1,
         ]);
 
-        $this->assertSame(1, $this->response->cookies->count);
-        $this->assertSameCookie($expectedCookie, $this->response->cookies->get($cookie->name));
+        self::assertSame(1, $this->response->cookies->count);
+        self::assertSameCookie($expectedCookie, $this->response->cookies->get($cookie->name));
     }
 
     public function testRemoveFromBrowserByName(): void
@@ -213,8 +213,8 @@ class CookieManagerTest extends TestCase
             'expire' => 1,
         ]);
 
-        $this->assertSame(1, $this->response->cookies->count);
-        $this->assertSameCookie($expectedCookie, $this->response->cookies->get($cookie->name));
+        self::assertSame(1, $this->response->cookies->count);
+        self::assertSameCookie($expectedCookie, $this->response->cookies->get($cookie->name));
     }
 
     public function testRemoveByObject(): void
@@ -228,7 +228,7 @@ class CookieManagerTest extends TestCase
         $this->response->cookies->add($cookie);
 
         $this->cookieManager->remove($cookie, false);
-        $this->assertSame(0, $this->response->cookies->count);
+        self::assertSame(0, $this->response->cookies->count);
     }
 
     public function testRemoveByName(): void
@@ -250,8 +250,8 @@ class CookieManagerTest extends TestCase
 
         $this->cookieManager->remove($cookie1->name, false);
 
-        $this->assertSame(1, $this->response->cookies->count);
-        $this->assertSameCookie($cookie2, $this->response->cookies->get($cookie2->name));
+        self::assertSame(1, $this->response->cookies->count);
+        self::assertSameCookie($cookie2, $this->response->cookies->get($cookie2->name));
     }
 
     public function testRemoveAll(): void
@@ -272,19 +272,19 @@ class CookieManagerTest extends TestCase
         $this->response->cookies->add($cookie2);
 
         $this->cookieManager->removeAll();
-        $this->assertSame(0, $this->response->cookies->count);
+        self::assertSame(0, $this->response->cookies->count);
     }
 
     private function assertSameCookie(Cookie $expectedCookie, ?Cookie $cookie): void
     {
-        $this->assertNotNull($cookie);
-        $this->assertSame($expectedCookie->domain, $cookie->domain);
-        $this->assertSame($expectedCookie->expire, $cookie->expire);
-        $this->assertSame($expectedCookie->httpOnly, $cookie->httpOnly);
-        $this->assertSame($expectedCookie->name, $cookie->name);
-        $this->assertSame($expectedCookie->path, $cookie->path);
-        $this->assertSame($expectedCookie->sameSite, $cookie->sameSite);
-        $this->assertSame($expectedCookie->secure, $cookie->secure);
-        $this->assertSame($expectedCookie->value, $cookie->value);
+        self::assertNotNull($cookie);
+        self::assertSame($expectedCookie->domain, $cookie->domain);
+        self::assertSame($expectedCookie->expire, $cookie->expire);
+        self::assertSame($expectedCookie->httpOnly, $cookie->httpOnly);
+        self::assertSame($expectedCookie->name, $cookie->name);
+        self::assertSame($expectedCookie->path, $cookie->path);
+        self::assertSame($expectedCookie->sameSite, $cookie->sameSite);
+        self::assertSame($expectedCookie->secure, $cookie->secure);
+        self::assertSame($expectedCookie->value, $cookie->value);
     }
 }
