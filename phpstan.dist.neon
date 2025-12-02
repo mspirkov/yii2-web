@@ -46,12 +46,6 @@ parameters:
         - YII_ENV_TEST
 
     ignoreErrors:
-        # TODO: Remove after updating shipmonk/phpstan-rules
-        -
-            message: '#^The \@return phpdoc does not contain null\, but native return type does#'
-            count: 1
-            path: src/Request.php
-
         -
             message: '#^Missing native return typehint bool\|float\|int\|null#'
             count: 1
