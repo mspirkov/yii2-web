@@ -10,12 +10,12 @@ class RequestDataProvider
     public const TEST_IP = '192.52.193.0';
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     int|null,
      *     int|null,
-     * }[]
+     * }>
      */
     public static function provideGetIntData(): array
     {
@@ -29,12 +29,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     int|null,
      *     int|null,
-     * }[]
+     * }>
      */
     public static function provideGetGetIntData(): array
     {
@@ -44,7 +44,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetIntWithExceptionData(): array
     {
@@ -58,7 +58,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetPostIntWithExceptionData(): array
     {
@@ -68,12 +68,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     float|null,
      *     float|null,
-     * }[]
+     * }>
      */
     public static function provideGetFloatData(): array
     {
@@ -89,12 +89,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     float|null,
      *     float|null,
-     * }[]
+     * }>
      */
     public static function provideGetGetFloatData(): array
     {
@@ -104,7 +104,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetFloatWithExceptionData(): array
     {
@@ -117,7 +117,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetPostFloatWithExceptionData(): array
     {
@@ -127,12 +127,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     bool|null,
      *     bool|null,
-     * }[]
+     * }>
      */
     public static function provideGetGetBoolData(): array
     {
@@ -142,12 +142,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     bool|null,
      *     bool|null,
-     * }[]
+     * }>
      */
     public static function provideGetPostBoolData(): array
     {
@@ -157,7 +157,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetBoolWithExceptionData(): array
     {
@@ -172,12 +172,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     string|null,
      *     string|null,
-     * }[]
+     * }>
      */
     public static function provideGetStringData(): array
     {
@@ -195,7 +195,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetStringWithExceptionData(): array
     {
@@ -205,12 +205,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     mixed[]|null,
      *     mixed[]|null,
-     * }[]
+     * }>
      */
     public static function provideGetArrayData(): array
     {
@@ -225,12 +225,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     mixed[]|null,
      *     mixed[]|null,
-     * }[]
+     * }>
      */
     public static function provideGetGetArrayData(): array
     {
@@ -244,7 +244,7 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{mixed}[]
+     * @return list<array{mixed}>
      */
     public static function provideGetPostArrayWithExceptionData(): array
     {
@@ -258,12 +258,12 @@ class RequestDataProvider
     }
 
     /**
-     * @return array{
+     * @return list<array{
      *     mixed,
      *     string,
      *     bool|null,
      *     bool|null,
-     * }[]
+     * }>
      */
     private static function provideGetBoolData(): array
     {
