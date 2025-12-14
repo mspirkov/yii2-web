@@ -15,25 +15,13 @@ parameters:
     reportPossiblyNonexistentConstantArrayOffset: true
     reportMaybesInPropertyPhpDocTypes: false
 
-    strictRules:
-        booleansInConditions: false
-        booleansInLoopConditions: false
-        disallowedEmpty: false
-        disallowedShortTernary: false
-
     shipmonkRules:
-        forbidNullInBinaryOperations:
-            enabled: false
-        forbidCheckedExceptionInCallable:
-            enabled: false
-        forbidNullInInterpolatedString:
-            enabled: false
         forbidCast:
-            enabled: false
-        enforceReadonlyPublicProperty:
-            enabled: false
-        enforceListReturn:
-            enabled: false
+            enabled: true
+            blacklist!: ['(unset)']
+        classSuffixNaming:
+            superclassToSuffixMapping!:
+                \PHPUnit\Framework\TestCase: Test
 
     bootstrapFiles:
         - phpstan/bootstrap.php
