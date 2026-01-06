@@ -7,7 +7,7 @@ namespace MSpirkov\Yii2\Web;
 use yii\web\BadRequestHttpException;
 
 /**
- * A wrapper for {@link \yii\web\Request} for easier handling of GET and POST parameters.
+ * A wrapper for {@see \yii\web\Request} for easier handling of GET and POST parameters.
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  */

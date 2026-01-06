@@ -13,7 +13,7 @@ use yii\web\Request;
  * A utility class for managing cookies.
  *
  * This class encapsulates the logic for adding, removing, checking existence, and
- * retrieving cookies, using the {@link \yii\web\Request} and {@link \yii\web\Response}
+ * retrieving cookies, using the {@see \yii\web\Request} and {@see \yii\web\Response}
  * objects. It simplifies working with cookies by abstracting implementation details
  * and providing more convenient methods.
  *
