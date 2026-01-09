@@ -32,6 +32,9 @@ to the `require` section of your `composer.json` file.
 
 ## Components
 
+- [Request](#request)
+- [CookieManager](#cookiemanager)
+
 ### Request
 
 A wrapper for `\yii\web\Request` for easier handling of **GET** and **POST** parameters.
