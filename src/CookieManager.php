@@ -12,10 +12,26 @@ use yii\web\Request;
 /**
  * A utility class for managing cookies.
  *
- * This class encapsulates the logic for adding, removing, checking existence, and
- * retrieving cookies, using the {@see Request} and {@see Response}
- * objects. It simplifies working with cookies by abstracting implementation details
- * and providing more convenient methods.
+ * This class encapsulates the logic for adding, removing, checking existence, and retrieving cookies,
+ * using the {@see Request} and {@see Response} objects. It simplifies working with cookies by
+ * abstracting implementation details and providing more convenient methods.
+ *
+ * It contains the following methods:
+ *
+ * - {@see CookieManager::has()} - checks if a cookie with the specified name exists.
+ * - {@see CookieManager::get()} - returns the cookie with the specified name.
+ * - {@see CookieManager::add()} - adds a cookie to the response.
+ * - {@see CookieManager::remove()} - removes a cookie.
+ * - {@see CookieManager::removeAll()} - removes all cookies.
+ *
+ * Usage example:
+ *
+ * ```
+ * $this->cookieManager->add([
+ *     'name' => 'someCookieName',
+ *     'value' => 'someCookieValue',
+ * ]);
+ * ```
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
