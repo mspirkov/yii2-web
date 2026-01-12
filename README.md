@@ -57,8 +57,6 @@ It contains the following methods:
 First, you need to replace the `request` component in the configuration:
 
 ```php
-<?php
-
 use MSpirkov\Yii2\Web\Request;
 
 return [

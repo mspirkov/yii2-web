@@ -10,6 +10,63 @@ use yii\web\Request as BaseRequest;
 /**
  * A wrapper for {@see BaseRequest} for easier handling of GET and POST parameters.
  *
+ * It contains the following methods:
+ *
+ * - {@see Request::getGetInt()} - gets the value of a **GET** parameter by its name and tries to
+ *   convert it to an integer.
+ * - {@see Request::getGetFloat()} - gets the value of the **GET** parameter by its name and tries to
+ *   convert it to a floating-point number.
+ * - {@see Request::getGetBool()} - gets the value of the **GET** parameter by its name and tries to
+ *   convert it to a boolean.
+ * - {@see Request::getGetString()} - gets the value of the **GET** parameter by its name and tries to
+ *   convert it to a string.
+ * - {@see Request::getGetArray()} - gets the value of the **GET** parameter by its name and tries to
+ *   convert it to an array.
+ * - {@see Request::getPostInt()} - gets the value of a **POST** parameter by its name and tries to
+ *   convert it to an integer.
+ * - {@see Request::getPostFloat()} - gets the value of the **POST** parameter by its name and tries to
+ *   convert it to a floating-point number.
+ * - {@see Request::getPostBool()} - gets the value of the **POST** parameter by its name and tries to
+ *   convert it to a boolean.
+ * - {@see Request::getPostString()} - gets the value of the **POST** parameter by its name and tries to
+ *   convert it to a string.
+ * - {@see Request::getPostArray()} - gets the value of the **POST** parameter by its name and checks that
+ *   the value is an array.
+ *
+ * To use it, you need to replace the `request` component in the configuration:
+
+ * ```
+ * use MSpirkov\Yii2\Web\Request;
+ *
+ * return [
+ *     ...
+ *     'components' => [
+ *         'request' => [
+ *             'class' => Request::class,
+ *             ...
+ *         ],
+ *         ...
+ *     ],
+ * ];
+ * ```
+ *
+ * Usage example:
+ *
+ * ```
+ * use yii\web\Controller;
+ *
+ * class ProductController extends Controller
+ * {
+ *     public function actionDelete(): array
+ *     {
+ *         $id = $this->request->getPostInt('id');
+ *
+ *         // There's some logic here. For example, calling a service class method to delete
+ *         // a product with the parameter `$id`.
+ *     }
+ * }
+ * ```
+ *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  */
 class Request extends BaseRequest
