@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Web;
 
 use yii\web\BadRequestHttpException;
+use yii\web\Request as BaseRequest;
 
 /**
- * A wrapper for {@see \yii\web\Request} for easier handling of GET and POST parameters.
+ * A wrapper for {@see BaseRequest} for easier handling of GET and POST parameters.
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  */
-class Request extends \yii\web\Request
+class Request extends BaseRequest
 {
     /**
      * Gets the value of a GET parameter by its name and tries to convert it to an integer.
