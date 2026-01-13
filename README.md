@@ -99,7 +99,7 @@ class Html extends \yii\helpers\Html
 }
 ```
 
-You can also use this trait with other helpers that inherit `\yii\helpers\Html`. For example :
+You can also use this trait with other helpers that extends `\yii\helpers\Html`. For example:
 
 ```php
 use MSpirkov\Yii2\Web\HtmlTrait;
