@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Web\Tests\Request;
 
 use MSpirkov\Yii2\Web\Request;
-use PHPUnit\Framework\TestCase;
+use MSpirkov\Yii2\Web\Tests\AbstractTestCase;
 use yii\web\BadRequestHttpException;
 
-class RequestTest extends TestCase
+class RequestTest extends AbstractTestCase
 {
     private Request $request;
 
