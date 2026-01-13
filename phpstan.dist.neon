@@ -25,7 +25,7 @@ parameters:
             blacklist!: ['(unset)', '(object)']
         classSuffixNaming:
             superclassToSuffixMapping!:
-                \PHPUnit\Framework\TestCase: Test
+                \MSpirkov\Yii2\Web\Tests\AbstractTestCase: Test
 
     bootstrapFiles:
         - phpstan/bootstrap.php

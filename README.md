@@ -32,8 +32,84 @@ to the `require` section of your `composer.json` file.
 
 ## Components
 
-- [Request](#request)
 - [CookieManager](#cookiemanager)
+- [HtmlTrait](#htmltrait)
+- [Request](#request)
+
+### CookieManager
+
+A utility class for managing cookies.
+
+This class encapsulates the logic for adding, removing, checking existence, and retrieving cookies, using the `\yii\web\Request`
+and `\yii\web\Response` objects. It simplifies working with cookies by abstracting implementation details and providing more
+convenient methods.
+
+It contains the following methods:
+
+- `has` - checks if a cookie with the specified name exists.
+- `get` - returns the cookie with the specified name.
+- `add` - adds a cookie to the response.
+- `remove` - removes a cookie.
+- `removeAll` - removes all cookies.
+
+#### Usage example:
+
+```php
+class CookieManager extends \MSpirkov\Yii2\Web\CookieManager
+{
+    public function __construct()
+    {
+        parent::__construct(
+            Instance::ensure('request', Request::class),
+            Instance::ensure('response', Response::class),
+        );
+    }
+}
+```
+
+```php
+class ExampleService
+{
+    public function __construct(
+        private readonly CookieManager $cookieManager,
+    ) {}
+
+    public function addCookie(): void
+    {
+        $this->cookieManager->add([
+            'name' => 'someCookieName',
+            'value' => 'someCookieValue',
+        ]);
+    }
+}
+```
+
+### HtmlTrait
+
+A trait that extends the basic functionality of the `\yii\helpers\Html` helper.
+
+Usage example:
+
+```php
+use MSpirkov\Yii2\Web\HtmlTrait;
+
+class Html extends \yii\helpers\Html
+{
+    use HtmlTrait;
+}
+```
+
+#### Method `singleButtonForm`
+
+Сreates a form as a single button with hidden inputs. This can be useful when you need to perform an action
+when you click a button, such as deleting an item. This allows you to easily perform a request without
+manually creating a form, hidden inputs, etc.
+
+Usage example:
+
+```php
+<?= Html::singleButtonForm(['product/delete'], ['id' => $product->id], 'Delete'); ?>
+```
 
 ### Request
 
@@ -134,54 +210,6 @@ class ProductController extends Controller
         $this->response->format = Response::FORMAT_JSON;
 
         return $this->service->delete($this->request->getPostInt('id'));
-    }
-}
-```
-
-### CookieManager
-
-A utility class for managing cookies.
-
-This class encapsulates the logic for adding, removing, checking existence, and retrieving cookies, using the `\yii\web\Request`
-and `\yii\web\Response` objects. It simplifies working with cookies by abstracting implementation details and providing more
-convenient methods.
-
-It contains the following methods:
-
-- `has` - checks if a cookie with the specified name exists.
-- `get` - returns the cookie with the specified name.
-- `add` - adds a cookie to the response.
-- `remove` - removes a cookie.
-- `removeAll` - removes all cookies.
-
-#### Usage example:
-
-```php
-class CookieManager extends \MSpirkov\Yii2\Web\CookieManager
-{
-    public function __construct()
-    {
-        parent::__construct(
-            Instance::ensure('request', Request::class),
-            Instance::ensure('response', Response::class),
-        );
-    }
-}
-```
-
-```php
-class ExampleService
-{
-    public function __construct(
-        private readonly CookieManager $cookieManager,
-    ) {}
-
-    public function addCookie(): void
-    {
-        $this->cookieManager->add([
-            'name' => 'someCookieName',
-            'value' => 'someCookieValue',
-        ]);
     }
 }
 ```

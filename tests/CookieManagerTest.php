@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Web\Tests;
 
 use MSpirkov\Yii2\Web\CookieManager;
-use PHPUnit\Framework\TestCase;
 use yii\di\Instance;
 use yii\web\Application;
 use yii\web\Cookie;
 use yii\web\Request;
 use yii\web\Response;
 
-class CookieManagerTest extends TestCase
+class CookieManagerTest extends AbstractTestCase
 {
     private const NON_EXISTENT_COOKIE_NAME = 'nonExistentCookieName';
 
