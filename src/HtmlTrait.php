@@ -66,8 +66,8 @@ trait HtmlTrait
     ): string {
         $content = static::beginForm($action, $formMethod, $formOptions);
 
-        foreach ($data as $key => $val) {
-            $content .= static::hiddenInput($key, $val);
+        foreach ($data as $key => $value) {
+            $content .= static::hiddenInput($key, $value);
         }
 
         $content .= static::submitButton($buttonContent, $buttonOptions);
