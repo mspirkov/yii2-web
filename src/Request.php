@@ -34,7 +34,7 @@ use yii\web\Request as BaseRequest;
  *   the value is an array.
  *
  * To use it, you need to replace the `request` component in the configuration:
-
+ *
  * ```
  * use MSpirkov\Yii2\Web\Request;
  *
