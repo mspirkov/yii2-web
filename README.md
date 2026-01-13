@@ -99,6 +99,17 @@ class Html extends \yii\helpers\Html
 }
 ```
 
+You can also use this trait with other helpers that inherit `\yii\helpers\Html`. For example :
+
+```php
+use MSpirkov\Yii2\Web\HtmlTrait;
+
+class Html extends \yii\bootstrap5\Html
+{
+    use HtmlTrait;
+}
+```
+
 #### Method `singleButtonForm`
 
 Сreates a form as a single button with hidden inputs. This can be useful when you need to perform an action
