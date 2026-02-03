@@ -326,7 +326,7 @@ class Request extends BaseRequest
      *
      * @return int|float|bool|null Сonverted value or default value
      *
-     * @see https://www.php.net/manual/ru/function.filter-var.php
+     * @link https://www.php.net/manual/ru/function.filter-var.php
      */
     private function filterScalarValue(
         string $name,
