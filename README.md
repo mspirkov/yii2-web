@@ -139,6 +139,10 @@ It contains the following methods:
 - `getPostString` - gets the value of the **POST** parameter by its name and tries to convert it to a string.
 - `getPostArray` - gets the value of the **POST** parameter by its name and checks that the value is an array.
 
+> [!IMPORTANT]
+>
+> All parameter retrieval methods also allow you to mark parameters as required using the `$required` parameter.
+
 #### Configuration
 
 First, you need to replace the `request` component in the configuration:

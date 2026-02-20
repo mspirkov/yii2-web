@@ -79,21 +79,26 @@ class Request extends BaseRequest
      * @param string $name The parameter name.
      * @param T $defaultValue The default value of a parameter if the parameter does not
      * exist or is an empty string.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist or is an empty string, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist or is an empty string.
      *
-     * @return int|T Сonverted value or default value
+     * @return ($required is true ? int : int|T) Сonverted value or default value.
      */
-    public function getGetInt(string $name, ?int $defaultValue = null): ?int
+    public function getGetInt(string $name, ?int $defaultValue = null, bool $required = false): ?int
     {
-        /** @var int|T */
-        return $this->filterScalarValue(
-            $name,
-            $this->get($name),
-            $defaultValue,
-            FILTER_VALIDATE_INT,
-            true
-        );
+        $value = $this->get($name);
+        if ($value === null || $value === '') {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
+            return $defaultValue;
+        }
+
+        return $this->filterScalarValue($name, $value, FILTER_VALIDATE_INT);
     }
 
     /**
@@ -105,21 +110,26 @@ class Request extends BaseRequest
      * @param string $name The parameter name.
      * @param T $defaultValue The default value of a parameter if the parameter does not
      * exist or is an empty string.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist or is an empty string, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist or is an empty string.
      *
-     * @return float|T Сonverted value or default value
+     * @return ($required is true ? float : float|T) Сonverted value or default value.
      */
-    public function getGetFloat(string $name, ?float $defaultValue = null): ?float
+    public function getGetFloat(string $name, ?float $defaultValue = null, bool $required = false): ?float
     {
-        /** @var float|T */
-        return $this->filterScalarValue(
-            $name,
-            $this->get($name),
-            $defaultValue,
-            FILTER_VALIDATE_FLOAT,
-            true
-        );
+        $value = $this->get($name);
+        if ($value === null || $value === '') {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
+            return $defaultValue;
+        }
+
+        return $this->filterScalarValue($name, $value, FILTER_VALIDATE_FLOAT);
     }
 
     /**
@@ -130,21 +140,26 @@ class Request extends BaseRequest
      * @param string $name The parameter name.
      * @param T $defaultValue The default value of a parameter if the parameter does not
      * exist or is an empty string.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist or is an empty string, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist or is an empty string.
      *
-     * @return bool|T Сonverted value or default value
+     * @return ($required is true ? bool : bool|T) Сonverted value or default value.
      */
-    public function getGetBool(string $name, ?bool $defaultValue = null): ?bool
+    public function getGetBool(string $name, ?bool $defaultValue = null, bool $required = false): ?bool
     {
-        /** @var bool|T */
-        return $this->filterScalarValue(
-            $name,
-            $this->get($name),
-            $defaultValue,
-            FILTER_VALIDATE_BOOLEAN,
-            true
-        );
+        $value = $this->get($name);
+        if ($value === null || $value === '') {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
+            return $defaultValue;
+        }
+
+        return $this->filterScalarValue($name, $value, FILTER_VALIDATE_BOOLEAN);
     }
 
     /**
@@ -154,20 +169,27 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist.
      *
-     * @return string|T Сonverted value or default value
+     * @return ($required is true ? string : string|T) Сonverted value or default value.
      */
-    public function getGetString(string $name, ?string $defaultValue = null): ?string
+    public function getGetString(string $name, ?string $defaultValue = null, bool $required = false): ?string
     {
         $value = $this->get($name);
         if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
             return $defaultValue;
         }
 
         if (!is_scalar($value)) {
-            $this->throwBadRequestException($name);
+            $this->throwInvalidParamException($name);
         }
 
         return (string) $value;
@@ -180,14 +202,26 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @return array<array-key, mixed>|T Сonverted value or default value
+     * @throws BadRequestHttpException If the parameter is required and does not exist.
+     *
+     * @return ($required is true ? array<array-key, mixed> : array<array-key, mixed>|T) Сonverted value
+     * or default value.
      */
-    public function getGetArray(string $name, ?array $defaultValue = null): ?array
+    public function getGetArray(string $name, ?array $defaultValue = null, bool $required = false): ?array
     {
         $value = $this->get($name);
+        if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
 
-        return $value !== null ? (array) $value : $defaultValue;
+            return $defaultValue;
+        }
+
+        return (array) $value;
     }
 
     /**
@@ -197,21 +231,26 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist.
      *
-     * @return int|T Сonverted value or default value
+     * @return ($required is true ? int : int|T) Сonverted value or default value.
      */
-    public function getPostInt(string $name, ?int $defaultValue = null): ?int
+    public function getPostInt(string $name, ?int $defaultValue = null, bool $required = false): ?int
     {
-        /** @var int|T */
-        return $this->filterScalarValue(
-            $name,
-            $this->post($name),
-            $defaultValue,
-            FILTER_VALIDATE_INT,
-            false
-        );
+        $value = $this->post($name);
+        if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
+            return $defaultValue;
+        }
+
+        return $this->filterScalarValue($name, $value, FILTER_VALIDATE_INT);
     }
 
     /**
@@ -222,21 +261,26 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist.
      *
-     * @return float|T Сonverted value or default value
+     * @return ($required is true ? float : float|T) Сonverted value or default value.
      */
-    public function getPostFloat(string $name, ?float $defaultValue = null): ?float
+    public function getPostFloat(string $name, ?float $defaultValue = null, bool $required = false): ?float
     {
-        /** @var float|T */
-        return $this->filterScalarValue(
-            $name,
-            $this->post($name),
-            $defaultValue,
-            FILTER_VALIDATE_FLOAT,
-            false
-        );
+        $value = $this->post($name);
+        if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
+            return $defaultValue;
+        }
+
+        return $this->filterScalarValue($name, $value, FILTER_VALIDATE_FLOAT);
     }
 
     /**
@@ -246,21 +290,26 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist.
      *
-     * @return bool|T Сonverted value or default value
+     * @return ($required is true ? bool : bool|T) Сonverted value or default value.
      */
-    public function getPostBool(string $name, ?bool $defaultValue = null): ?bool
+    public function getPostBool(string $name, ?bool $defaultValue = null, bool $required = false): ?bool
     {
-        /** @var bool|T */
-        return $this->filterScalarValue(
-            $name,
-            $this->post($name),
-            $defaultValue,
-            FILTER_VALIDATE_BOOLEAN,
-            false
-        );
+        $value = $this->post($name);
+        if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
+            return $defaultValue;
+        }
+
+        return $this->filterScalarValue($name, $value, FILTER_VALIDATE_BOOLEAN);
     }
 
     /**
@@ -270,20 +319,27 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value cannot be converted.
+     * @throws BadRequestHttpException If the value cannot be converted. Also, if the parameter
+     * is required and does not exist.
      *
-     * @return string|T Сonverted value or default value
+     * @return ($required is true ? string : string|T) Сonverted value or default value.
      */
-    public function getPostString(string $name, ?string $defaultValue = null): ?string
+    public function getPostString(string $name, ?string $defaultValue = null, bool $required = false): ?string
     {
         $value = $this->post($name);
         if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
             return $defaultValue;
         }
 
         if (!is_scalar($value)) {
-            $this->throwBadRequestException($name);
+            $this->throwInvalidParamException($name);
         }
 
         return (string) $value;
@@ -296,20 +352,27 @@ class Request extends BaseRequest
      *
      * @param string $name The parameter name.
      * @param T $defaultValue The default parameter value if the parameter does not exist.
+     * @param bool $required Whether the argument is required. If `true` and the parameter does
+     * not exist, an exception will be thrown.
      *
-     * @throws BadRequestHttpException If the value is not an array.
+     * @throws BadRequestHttpException If the parameter is required and does not exist.
      *
-     * @return array<array-key, mixed>|T Value, if exists, or default value.
+     * @return ($required is true ? array<array-key, mixed> : array<array-key, mixed>|T) Сonverted value
+     * or default value.
      */
-    public function getPostArray(string $name, ?array $defaultValue = null): ?array
+    public function getPostArray(string $name, ?array $defaultValue = null, bool $required = false): ?array
     {
         $value = $this->post($name);
         if ($value === null) {
+            if ($required) {
+                $this->throwMissingParamException($name);
+            }
+
             return $defaultValue;
         }
 
         if (!is_array($value)) {
-            $this->throwBadRequestException($name);
+            $this->throwInvalidParamException($name);
         }
 
         return $value;
@@ -319,30 +382,21 @@ class Request extends BaseRequest
      * Attempts to convert the specified value to the specified type.
      *
      * @param mixed $value The original value of the parameter.
-     * @param int|float|bool|null $defaultValue The default parameter value.
      * @param int<FILTER_VALIDATE_INT, FILTER_VALIDATE_FLOAT> $filter The ID of the filter to apply.
      *
      * @throws BadRequestHttpException If the value cannot be converted.
      *
-     * @return int|float|bool|null Сonverted value or default value
+     * @return ($filter is FILTER_VALIDATE_INT ? int : ($filter is FILTER_VALIDATE_FLOAT ? float : bool)) Сonverted
+     * value or default value.
      *
      * @link https://www.php.net/manual/ru/function.filter-var.php
      */
-    private function filterScalarValue(
-        string $name,
-        $value,
-        $defaultValue,
-        int $filter,
-        bool $isGetParam
-    ) {
-        if ($value === null || ($isGetParam && $value === '')) {
-            return $defaultValue;
-        }
-
+    private function filterScalarValue(string $name, $value, int $filter)
+    {
         /** @var int|float|bool|null */
         $filteredValue = filter_var($value, $filter, FILTER_NULL_ON_FAILURE);
         if ($filteredValue === null) {
-            $this->throwBadRequestException($name);
+            $this->throwInvalidParamException($name);
         }
 
         return $filteredValue;
@@ -355,7 +409,19 @@ class Request extends BaseRequest
      *
      * @return never
      */
-    private function throwBadRequestException(string $name): void
+    private function throwMissingParamException(string $name): void
+    {
+        throw new BadRequestHttpException("Missing required parameter: {$name}");
+    }
+
+    /**
+     * @param string $name The parameter name.
+     *
+     * @throws BadRequestHttpException
+     *
+     * @return never
+     */
+    private function throwInvalidParamException(string $name): void
     {
         throw new BadRequestHttpException("Invalid value for parameter: {$name}");
     }

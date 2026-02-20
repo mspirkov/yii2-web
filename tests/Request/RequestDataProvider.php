@@ -46,7 +46,7 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetIntWithExceptionData(): array
+    public static function provideGetIntWithInvalidParamExceptionData(): array
     {
         return [
             ['1afg'],
@@ -60,9 +60,9 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetPostIntWithExceptionData(): array
+    public static function provideGetPostIntWithInvalidParamExceptionData(): array
     {
-        return array_merge(self::provideGetIntWithExceptionData(), [
+        return array_merge(self::provideGetIntWithInvalidParamExceptionData(), [
             [''],
         ]);
     }
@@ -106,7 +106,7 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetFloatWithExceptionData(): array
+    public static function provideGetFloatWithInvalidParamExceptionData(): array
     {
         return [
             ['1afg'],
@@ -119,9 +119,9 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetPostFloatWithExceptionData(): array
+    public static function provideGetPostFloatWithInvalidParamExceptionData(): array
     {
-        return array_merge(self::provideGetFloatWithExceptionData(), [
+        return array_merge(self::provideGetFloatWithInvalidParamExceptionData(), [
             [''],
         ]);
     }
@@ -159,7 +159,7 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetBoolWithExceptionData(): array
+    public static function provideGetBoolWithInvalidParamExceptionData(): array
     {
         return [
             ['100'],
@@ -197,7 +197,7 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetStringWithExceptionData(): array
+    public static function provideGetStringWithInvalidParamExceptionData(): array
     {
         return [
             [[]],
@@ -246,7 +246,7 @@ class RequestDataProvider
     /**
      * @return list<array{mixed}>
      */
-    public static function provideGetPostArrayWithExceptionData(): array
+    public static function provideGetPostArrayWithInvalidParamExceptionData(): array
     {
         return [
             [1],
