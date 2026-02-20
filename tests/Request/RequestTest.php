@@ -46,8 +46,13 @@ class RequestTest extends AbstractTestCase
         $this->request->getGetInt(RequestDataProvider::TEST_PARAM_NAME);
     }
 
-    public function testGetGetIntWithMissingParamException(): void
+    /**
+     * @testWith [""]
+     *           [null]
+     */
+    public function testGetGetIntWithMissingParamException(?string $paramValue): void
     {
+        $this->setQueryParams($paramValue);
         $this->expectMissingParamException();
         $this->request->getGetInt(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
@@ -112,8 +117,13 @@ class RequestTest extends AbstractTestCase
         $this->request->getGetFloat(RequestDataProvider::TEST_PARAM_NAME);
     }
 
-    public function testGetGetFloatWithMissingParamException(): void
+    /**
+     * @testWith [""]
+     *           [null]
+     */
+    public function testGetGetFloatWithMissingParamException(?string $paramValue): void
     {
+        $this->setQueryParams($paramValue);
         $this->expectMissingParamException();
         $this->request->getGetFloat(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
@@ -178,8 +188,13 @@ class RequestTest extends AbstractTestCase
         $this->request->getGetBool(RequestDataProvider::TEST_PARAM_NAME);
     }
 
-    public function testGetGetBoolWithMissingParamException(): void
+    /**
+     * @testWith [""]
+     *           [null]
+     */
+    public function testGetGetBoolWithMissingParamException(?string $paramValue): void
     {
+        $this->setQueryParams($paramValue);
         $this->expectMissingParamException();
         $this->request->getGetBool(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
