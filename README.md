@@ -126,6 +126,10 @@ Usage example:
 
 A wrapper for `\yii\web\Request` for easier handling of **GET** and **POST** parameters.
 
+> [!IMPORTANT]
+>
+> All parameter retrieval methods also allow you to mark parameters as required using the `$required` parameter.
+
 It contains the following methods:
 
 - `getGetInt` - gets the value of a **GET** parameter by its name and tries to convert it to an integer.
@@ -138,10 +142,6 @@ It contains the following methods:
 - `getPostBool` - gets the value of the **POST** parameter by its name and tries to convert it to a boolean.
 - `getPostString` - gets the value of the **POST** parameter by its name and tries to convert it to a string.
 - `getPostArray` - gets the value of the **POST** parameter by its name and checks that the value is an array.
-
-> [!IMPORTANT]
->
-> All parameter retrieval methods also allow you to mark parameters as required using the `$required` parameter.
 
 #### Configuration
 
