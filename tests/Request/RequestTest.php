@@ -35,15 +35,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetIntWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetIntWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetGetIntWithException($paramValue): void
+    public function testGetGetIntWithInvalidParamException($paramValue): void
     {
         $this->setQueryParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getGetInt(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetGetIntWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getGetInt(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -62,15 +68,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetPostIntWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetPostIntWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetPostIntWithException($paramValue): void
+    public function testGetPostIntWithInvalidParamException($paramValue): void
     {
         $this->setBodyParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getPostInt(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetPostIntWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getPostInt(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -89,15 +101,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetFloatWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetFloatWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetGetFloatWithException($paramValue): void
+    public function testGetGetFloatWithInvalidParamException($paramValue): void
     {
         $this->setQueryParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getGetFloat(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetGetFloatWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getGetFloat(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -116,15 +134,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetPostFloatWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetPostFloatWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetPostFloatWithException($paramValue): void
+    public function testGetPostFloatWithInvalidParamException($paramValue): void
     {
         $this->setBodyParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getPostFloat(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetPostFloatWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getPostFloat(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -143,15 +167,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetBoolWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetBoolWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetGetBoolWithException($paramValue): void
+    public function testGetGetBoolWithInvalidParamException($paramValue): void
     {
         $this->setQueryParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getGetBool(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetGetBoolWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getGetBool(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -170,15 +200,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetBoolWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetBoolWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetPostBoolWithException($paramValue): void
+    public function testGetPostBoolWithInvalidParamException($paramValue): void
     {
         $this->setBodyParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getPostBool(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetPostBoolWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getPostBool(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -197,15 +233,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetStringWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetStringWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetGetStringWithException($paramValue): void
+    public function testGetGetStringWithInvalidParamException($paramValue): void
     {
         $this->setQueryParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getGetString(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetGetStringWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getGetString(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -224,15 +266,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetStringWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetStringWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetPostStringWithException($paramValue): void
+    public function testGetPostStringWithInvalidParamException($paramValue): void
     {
         $this->setBodyParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getPostString(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetPostStringWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getPostString(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -250,6 +298,12 @@ class RequestTest extends AbstractTestCase
     ): void {
         $this->setQueryParams($paramValue);
         self::assertSame($expectedResult, $this->request->getGetArray($paramName, $defaultValue));
+    }
+
+    public function testGetGetArrayWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getGetArray(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -270,15 +324,21 @@ class RequestTest extends AbstractTestCase
     }
 
     /**
-     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetPostArrayWithExceptionData
+     * @dataProvider MSpirkov\Yii2\Web\Tests\Request\RequestDataProvider::provideGetPostArrayWithInvalidParamExceptionData
      *
      * @param mixed $paramValue
      */
-    public function testGetPostArrayWithException($paramValue): void
+    public function testGetPostArrayWithInvalidParamException($paramValue): void
     {
         $this->setBodyParams($paramValue);
-        $this->expectBadRequestException();
+        $this->expectInvalidParamException();
         $this->request->getPostArray(RequestDataProvider::TEST_PARAM_NAME);
+    }
+
+    public function testGetPostArrayWithMissingParamException(): void
+    {
+        $this->expectMissingParamException();
+        $this->request->getPostArray(RequestDataProvider::TEST_PARAM_NAME, null, true);
     }
 
     /**
@@ -297,7 +357,14 @@ class RequestTest extends AbstractTestCase
         $this->request->setBodyParams([RequestDataProvider::TEST_PARAM_NAME => $paramValue]);
     }
 
-    private function expectBadRequestException(): void
+    private function expectMissingParamException(): void
+    {
+        $this->expectExceptionObject(
+            new BadRequestHttpException('Missing required parameter: ' . RequestDataProvider::TEST_PARAM_NAME)
+        );
+    }
+
+    private function expectInvalidParamException(): void
     {
         $this->expectExceptionObject(
             new BadRequestHttpException('Invalid value for parameter: ' . RequestDataProvider::TEST_PARAM_NAME)
