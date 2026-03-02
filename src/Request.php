@@ -393,7 +393,7 @@ class Request extends BaseRequest
      */
     private function filterScalarValue(string $name, $value, int $filter)
     {
-        /** @var int|float|bool|null */
+        /** @var int|float|bool|null $filteredValue */
         $filteredValue = filter_var($value, $filter, FILTER_NULL_ON_FAILURE);
         if ($filteredValue === null) {
             $this->throwInvalidParamException($name);
