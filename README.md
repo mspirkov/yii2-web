@@ -52,22 +52,36 @@ It contains the following methods:
 - `remove` - removes a cookie.
 - `removeAll` - removes all cookies.
 
-#### Usage example:
+#### Usage example
+
+##### Initialization
+
+Add the definition to the `container` configuration in the `definitions` section:
 
 ```php
-class CookieManager extends \MSpirkov\Yii2\Web\CookieManager
-{
-    public function __construct()
-    {
-        parent::__construct(
-            Instance::ensure('request', Request::class),
-            Instance::ensure('response', Response::class),
-        );
-    }
-}
+use MSpirkov\Yii2\Web\CookieManager;
+use MSpirkov\Yii2\Web\Request;
+use yii\web\Response;
+
+return [
+    ...
+    'container' => [
+        'definitions' => [
+            CookieManager::class => static fn() => new CookieManager(
+                Instance::ensure('request', Request::class),
+                Instance::ensure('response', Response::class),
+            ),
+        ],
+    ],
+    ...
+];
 ```
 
+##### Usage
+
 ```php
+use MSpirkov\Yii2\Web\CookieManager;
+
 class ExampleService
 {
     public function __construct(
@@ -88,7 +102,7 @@ class ExampleService
 
 A trait that extends the basic functionality of the `\yii\helpers\Html` helper.
 
-Usage example:
+#### Usage example
 
 ```php
 use MSpirkov\Yii2\Web\HtmlTrait;
@@ -206,7 +220,7 @@ class Controller extends \yii\web\Controller
 }
 ```
 
-#### Usage example:
+#### Usage example
 
 ```php
 class ProductController extends Controller
