@@ -60,6 +60,8 @@ Add the definition to the `container` configuration in the `definitions` section
 
 ```php
 use MSpirkov\Yii2\Web\CookieManager;
+use MSpirkov\Yii2\Web\Request;
+use yii\web\Response;
 
 return [
     ...
