@@ -59,7 +59,7 @@ It contains the following methods:
 Add the definition to the `container` configuration in the `definitions` section:
 
 ```php
-use MSpirkov\Yii2\Db\CookieManager;
+use MSpirkov\Yii2\Web\CookieManager;
 
 return [
     ...
@@ -78,7 +78,7 @@ return [
 ##### Usage
 
 ```php
-use MSpirkov\Yii2\Db\CookieManager;
+use MSpirkov\Yii2\Web\CookieManager;
 
 class ExampleService
 {
