@@ -5,19 +5,11 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Web\Tests;
 
 use MSpirkov\Yii2\Web\CookieManager;
-use yii\di\Instance;
-use yii\web\Application;
 use yii\web\Cookie;
-use yii\web\Request;
-use yii\web\Response;
 
 class CookieManagerTest extends AbstractTestCase
 {
     private const NON_EXISTENT_COOKIE_NAME = 'nonExistentCookieName';
-
-    private Request $request;
-
-    private Response $response;
 
     private CookieManager $cookieManager;
 
@@ -25,23 +17,10 @@ class CookieManagerTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $projectRoot = dirname(__DIR__);
-
-        new Application([
-            'id' => 'yii2-web',
-            'basePath' => $projectRoot,
-            'vendorPath' => $projectRoot,
-            'components' => [
-                'request' => [
-                    'class' => Request::class,
-                    'cookieValidationKey' => uniqid(),
-                ],
-            ],
-        ]);
-
-        $this->request = Instance::ensure('request', Request::class);
-        $this->response = Instance::ensure('response', Response::class);
-        $this->cookieManager = new CookieManager($this->request, $this->response);
+        $this->cookieManager = new CookieManager(
+            $this->application->request,
+            $this->application->response
+        );
     }
 
     protected function tearDown(): void
@@ -72,7 +51,7 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => time() - 100,
         ]);
 
-        $this->request->cookies->fromArray([
+        $this->application->request->cookies->fromArray([
             $cookie1->name => $cookie1,
             $cookie2->name => $cookie2,
             $cookie3->name => $cookie3,
@@ -109,7 +88,7 @@ class CookieManagerTest extends AbstractTestCase
             'value' => 'test',
         ]);
 
-        $this->request->cookies->fromArray([
+        $this->application->request->cookies->fromArray([
             $cookie1->name => $cookie1,
             $cookie2->name => $cookie2,
         ]);
@@ -155,8 +134,8 @@ class CookieManagerTest extends AbstractTestCase
 
         $expectedCookie = new Cookie($cookieData);
 
-        self::assertSame(1, $this->response->cookies->count);
-        self::assertSameCookie($expectedCookie, $this->response->cookies->get($cookieData['name']));
+        self::assertSame(1, $this->application->response->cookies->count);
+        self::assertSameCookie($expectedCookie, $this->application->response->cookies->get($cookieData['name']));
     }
 
     public function testAddByCookieObject(): void
@@ -168,8 +147,8 @@ class CookieManagerTest extends AbstractTestCase
 
         $this->cookieManager->add($cookie);
 
-        self::assertSame(1, $this->response->cookies->count);
-        self::assertSameCookie($cookie, $this->response->cookies->get($cookie->name));
+        self::assertSame(1, $this->application->response->cookies->count);
+        self::assertSameCookie($cookie, $this->application->response->cookies->get($cookie->name));
     }
 
     public function testRemoveFromBrowserByObject(): void
@@ -180,7 +159,7 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => time() + 100,
         ]);
 
-        $this->response->cookies->add($cookie);
+        $this->application->response->cookies->add($cookie);
 
         $this->cookieManager->remove($cookie);
 
@@ -190,8 +169,8 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => 1,
         ]);
 
-        self::assertSame(1, $this->response->cookies->count);
-        self::assertSameCookie($expectedCookie, $this->response->cookies->get($cookie->name));
+        self::assertSame(1, $this->application->response->cookies->count);
+        self::assertSameCookie($expectedCookie, $this->application->response->cookies->get($cookie->name));
     }
 
     public function testRemoveFromBrowserByName(): void
@@ -202,7 +181,7 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => time() + 100,
         ]);
 
-        $this->response->cookies->add($cookie);
+        $this->application->response->cookies->add($cookie);
 
         $this->cookieManager->remove($cookie->name);
 
@@ -212,8 +191,8 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => 1,
         ]);
 
-        self::assertSame(1, $this->response->cookies->count);
-        self::assertSameCookie($expectedCookie, $this->response->cookies->get($cookie->name));
+        self::assertSame(1, $this->application->response->cookies->count);
+        self::assertSameCookie($expectedCookie, $this->application->response->cookies->get($cookie->name));
     }
 
     public function testRemoveByObject(): void
@@ -224,10 +203,10 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => time() + 100,
         ]);
 
-        $this->response->cookies->add($cookie);
+        $this->application->response->cookies->add($cookie);
 
         $this->cookieManager->remove($cookie, false);
-        self::assertSame(0, $this->response->cookies->count);
+        self::assertSame(0, $this->application->response->cookies->count);
     }
 
     public function testRemoveByName(): void
@@ -244,13 +223,13 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => time() + 100,
         ]);
 
-        $this->response->cookies->add($cookie1);
-        $this->response->cookies->add($cookie2);
+        $this->application->response->cookies->add($cookie1);
+        $this->application->response->cookies->add($cookie2);
 
         $this->cookieManager->remove($cookie1->name, false);
 
-        self::assertSame(1, $this->response->cookies->count);
-        self::assertSameCookie($cookie2, $this->response->cookies->get($cookie2->name));
+        self::assertSame(1, $this->application->response->cookies->count);
+        self::assertSameCookie($cookie2, $this->application->response->cookies->get($cookie2->name));
     }
 
     public function testRemoveAll(): void
@@ -267,11 +246,11 @@ class CookieManagerTest extends AbstractTestCase
             'expire' => time() + 100,
         ]);
 
-        $this->response->cookies->add($cookie1);
-        $this->response->cookies->add($cookie2);
+        $this->application->response->cookies->add($cookie1);
+        $this->application->response->cookies->add($cookie2);
 
         $this->cookieManager->removeAll();
-        self::assertSame(0, $this->response->cookies->count);
+        self::assertSame(0, $this->application->response->cookies->count);
     }
 
     private function assertSameCookie(Cookie $expectedCookie, ?Cookie $cookie): void
