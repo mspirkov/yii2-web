@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Web\Tests\HtmlTrait;
 
 use MSpirkov\Yii2\Web\Tests\AbstractTestCase;
-use Yii;
 use yii\base\Module;
 
 class HtmlTraitTest extends AbstractTestCase
@@ -143,7 +142,7 @@ class HtmlTraitTest extends AbstractTestCase
 
     public function testSingleButtonFormWithArrayAction(): void
     {
-        Yii::$app->controller = new TestController('test', new Module('module'));
+        $this->application->controller = new TestController('test', new Module('module'));
 
         $content = Html::singleButtonForm(['test/run'], ['test' => '123', 'testTest' => '456'], 'Go');
 

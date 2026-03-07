@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace MSpirkov\Yii2\Web\Tests;
 
 use PHPUnit\Framework\TestCase;
-use yii\console\Application;
+use yii\web\Application;
+use yii\web\IdentityInterface;
 
 abstract class AbstractTestCase extends TestCase
 {
+    /** @var Application<IdentityInterface> */
+    protected Application $application;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -16,7 +20,7 @@ abstract class AbstractTestCase extends TestCase
         /** @var array<string, mixed> $config */
         $config = require __DIR__ . '/config.php';
 
-        new Application($config);
+        $this->application = new Application($config);
     }
 
     protected function tearDown(): void
