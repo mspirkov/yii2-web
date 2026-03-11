@@ -59,6 +59,7 @@ It contains the following methods:
 Add the definition to the `container` configuration in the `definitions` section:
 
 ```php
+use MSpirkov\Yii2\Web\CookieManagerInterface;
 use MSpirkov\Yii2\Web\CookieManager;
 use MSpirkov\Yii2\Web\Request;
 use yii\web\Response;
@@ -67,7 +68,7 @@ return [
     ...
     'container' => [
         'definitions' => [
-            CookieManager::class => static fn() => new CookieManager(
+            CookieManagerInterface::class => static fn() => new CookieManager(
                 Instance::ensure('request', Request::class),
                 Instance::ensure('response', Response::class),
             ),
