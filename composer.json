@@ -40,7 +40,8 @@
         "spaze/phpstan-disallowed-calls": "^4.7",
         "yiisoft/yii2-bootstrap": "^2.0",
         "yiisoft/yii2-bootstrap4": "^2.0",
-        "yiisoft/yii2-bootstrap5": "^2.0"
+        "yiisoft/yii2-bootstrap5": "^2.0",
+        "ergebnis/phpstan-rules": "^2.13"
     },
     "repositories": [
         {
