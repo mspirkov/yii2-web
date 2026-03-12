@@ -12,32 +12,32 @@ use yii\web\Request;
  *
  * It contains the following methods:
  *
- * - {@see TypedRequestParametersTrait::getGetInt()} - gets the value of a **GET** parameter by its name and tries to
+ * - {@see RequestTrait::getGetInt()} - gets the value of a **GET** parameter by its name and tries to
  *   convert it to an integer.
- * - {@see TypedRequestParametersTrait::getGetFloat()} - gets the value of the **GET** parameter by its name and tries to
+ * - {@see RequestTrait::getGetFloat()} - gets the value of the **GET** parameter by its name and tries to
  *   convert it to a floating-point number.
- * - {@see TypedRequestParametersTrait::getGetBool()} - gets the value of the **GET** parameter by its name and tries to
+ * - {@see RequestTrait::getGetBool()} - gets the value of the **GET** parameter by its name and tries to
  *   convert it to a boolean.
- * - {@see TypedRequestParametersTrait::getGetString()} - gets the value of the **GET** parameter by its name and tries to
+ * - {@see RequestTrait::getGetString()} - gets the value of the **GET** parameter by its name and tries to
  *   convert it to a string.
- * - {@see TypedRequestParametersTrait::getGetArray()} - gets the value of the **GET** parameter by its name and tries to
+ * - {@see RequestTrait::getGetArray()} - gets the value of the **GET** parameter by its name and tries to
  *   convert it to an array.
- * - {@see TypedRequestParametersTrait::getPostInt()} - gets the value of a **POST** parameter by its name and tries to
+ * - {@see RequestTrait::getPostInt()} - gets the value of a **POST** parameter by its name and tries to
  *   convert it to an integer.
- * - {@see TypedRequestParametersTrait::getPostFloat()} - gets the value of the **POST** parameter by its name and tries to
+ * - {@see RequestTrait::getPostFloat()} - gets the value of the **POST** parameter by its name and tries to
  *   convert it to a floating-point number.
- * - {@see TypedRequestParametersTrait::getPostBool()} - gets the value of the **POST** parameter by its name and tries to
+ * - {@see RequestTrait::getPostBool()} - gets the value of the **POST** parameter by its name and tries to
  *   convert it to a boolean.
- * - {@see TypedRequestParametersTrait::getPostString()} - gets the value of the **POST** parameter by its name and tries to
+ * - {@see RequestTrait::getPostString()} - gets the value of the **POST** parameter by its name and tries to
  *   convert it to a string.
- * - {@see TypedRequestParametersTrait::getPostArray()} - gets the value of the **POST** parameter by its name and checks that
+ * - {@see RequestTrait::getPostArray()} - gets the value of the **POST** parameter by its name and checks that
  *   the value is an array.
  *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
  * @phpstan-require-extends Request
  */
-trait TypedRequestParametersTrait
+trait RequestTrait
 {
     /**
      * Gets the value of a GET parameter by its name and tries to convert it to an integer.

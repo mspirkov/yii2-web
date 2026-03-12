@@ -36,7 +36,7 @@ to the `require` section of your `composer.json` file.
 - [Html](#html)
 - [HtmlTrait](#htmltrait)
 - [Request](#request)
-- [TypedRequestParametersTrait](#typedrequestparameterstrait)
+- [RequestTrait](#typedrequestparameterstrait)
 
 ### CookieManager
 
@@ -159,7 +159,7 @@ Usage example:
 
 ### Request
 
-A wrapper for `\yii\web\Request` that uses the capabilities of [TypedRequestParametersTrait](#typedrequestparameterstrait).
+A wrapper for `\yii\web\Request` that uses the capabilities of [RequestTrait](#typedrequestparameterstrait) and allow you to use its features without having to create your own basic `Request`.
 
 #### Configuration
 
@@ -247,7 +247,7 @@ final class ProductController extends AbstractController
 }
 ```
 
-### TypedRequestParametersTrait
+### RequestTrait
 
 A trait for easier handling of **GET** and **POST** parameters.
 
@@ -271,10 +271,10 @@ It contains the following methods:
 #### Usage example
 
 ```php
-use MSpirkov\Yii2\Web\TypedRequestParametersTrait;
+use MSpirkov\Yii2\Web\RequestTrait;
 
 class Request extends \yii\web\Request
 {
-    use TypedRequestParametersTrait;
+    use RequestTrait;
 }
 ```
