@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace MSpirkov\Yii2\Web\Tests;
 
-use MSpirkov\Yii2\Web\HtmlTrait;
-use yii\helpers\Html;
+use MSpirkov\Yii2\Web\Html as BaseHtml;
+use MSpirkov\Yii2\Web\Bootstrap3\Html as Bootstrap3Html;
+use MSpirkov\Yii2\Web\Bootstrap4\Html as Bootstrap4Html;
+use MSpirkov\Yii2\Web\Bootstrap5\Html as Bootstrap5Html;
 use yii\base\Module;
 
 abstract class AbstractHtmlTest extends AbstractTestCase
 {
     private const TEST_ACTION = 'https://test.com';
 
-    /** @var class-string<Html&HtmlTrait> */
+    /** @var class-string<BaseHtml|Bootstrap3Html|Bootstrap4Html|Bootstrap5Html> */
     protected string $htmlClass;
 
     /**
