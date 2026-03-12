@@ -159,7 +159,8 @@ Usage example:
 
 ### Request
 
-A wrapper for `\yii\web\Request` that uses the capabilities of [RequestTrait](#typedrequestparameterstrait) and allow you to use its features without having to create your own basic `Request`.
+A wrapper for `\yii\web\Request` that uses the capabilities of [RequestTrait](#typedrequestparameterstrait)
+and allows you to use them without having to create your own basic `Request`.
 
 #### Configuration
 
