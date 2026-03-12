@@ -82,12 +82,12 @@ return [
 ##### Usage
 
 ```php
-use MSpirkov\Yii2\Web\CookieManager;
+use MSpirkov\Yii2\Web\CookieManagerInterface;
 
-class ExampleService
+final readonly class ExampleService
 {
     public function __construct(
-        private readonly CookieManager $cookieManager,
+        private readonly CookieManagerInterface $cookieManager,
     ) {}
 
     public function addCookie(): void
@@ -109,7 +109,7 @@ A trait that extends the basic functionality of the `\yii\helpers\Html` helper.
 ```php
 use MSpirkov\Yii2\Web\HtmlTrait;
 
-class Html extends \yii\helpers\Html
+final class Html extends \yii\helpers\Html
 {
     use HtmlTrait;
 }
@@ -120,7 +120,7 @@ You can also use this trait with other helpers that extends `\yii\helpers\Html`.
 ```php
 use MSpirkov\Yii2\Web\HtmlTrait;
 
-class Html extends \yii\bootstrap5\Html
+final class Html extends \yii\bootstrap5\Html
 {
     use HtmlTrait;
 }
@@ -172,7 +172,7 @@ use yii\BaseYii;
 use yii\web\Application;
 use MSpirkov\Yii2\Web\Request;
 
-class Yii extends BaseYii
+final class Yii extends BaseYii
 {
     /** @var __Application */
     public static $app;
@@ -181,7 +181,7 @@ class Yii extends BaseYii
 /**
  * @property-read Request $request
  */
-class __Application extends Application {}
+final class __Application extends Application {}
 ```
 
 #### Basic Controller (Optional)
@@ -194,7 +194,7 @@ use MSpirkov\Yii2\Web\Request;
 /**
  * @property Request $request
  */
-class Controller extends \yii\web\Controller
+abstract class AbstractController extends \yii\web\Controller
 {
     public function init(): void
     {
@@ -208,7 +208,7 @@ class Controller extends \yii\web\Controller
 #### Usage example
 
 ```php
-class ProductController extends Controller
+final class ProductController extends AbstractController
 {
     public function __construct(
         string $id,
