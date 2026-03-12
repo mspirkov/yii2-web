@@ -189,19 +189,22 @@ You also need to specify this class in `__autocomplete.php` so that the IDE know
 <?php
 
 use yii\BaseYii;
-use yii\web\Application;
+use yii\web\Application as BaseWebApplication;
+use yii\console\Application as BaseConsoleApplication;
 use MSpirkov\Yii2\Web\Request;
 
 final class Yii extends BaseYii
 {
-    /** @var __Application */
+    /** @var __WebApplication|__ConsoleApplication  */
     public static $app;
 }
 
 /**
  * @property-read Request $request
  */
-final class __Application extends Application {}
+final class __WebApplication extends BaseWebApplication {}
+
+final class __ConsoleApplication extends BaseConsoleApplication {}
 ```
 
 #### Basic Controller (Optional)
@@ -210,11 +213,12 @@ I also recommend that you create your own basic controller and specify `Request`
 
 ```php
 use MSpirkov\Yii2\Web\Request;
+use yii\web\Controller as BaseController;
 
 /**
  * @property Request $request
  */
-abstract class AbstractController extends \yii\web\Controller
+abstract class AbstractController extends BaseController
 {
     public function init(): void
     {
