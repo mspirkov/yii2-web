@@ -13,17 +13,6 @@ use yii\helpers\Html;
  *
  * - {@see HtmlTrait::singleButtonForm()} - сreates a form as a single button with hidden inputs.
  *
- * Usage example:
- *
- * ```
- * use MSpirkov\Yii2\Web\HtmlTrait;
- *
- * class Html extends \yii\helpers\Html
- * {
- *     use HtmlTrait;
- * }
- * ```
- *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
  * @phpstan-require-extends Html

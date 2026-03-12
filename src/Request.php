@@ -33,40 +33,6 @@ use yii\web\Request as BaseRequest;
  * - {@see Request::getPostArray()} - gets the value of the **POST** parameter by its name and checks that
  *   the value is an array.
  *
- * To use it, you need to replace the `request` component in the configuration:
- *
- * ```
- * use MSpirkov\Yii2\Web\Request;
- *
- * return [
- *     ...
- *     'components' => [
- *         'request' => [
- *             'class' => Request::class,
- *             ...
- *         ],
- *         ...
- *     ],
- * ];
- * ```
- *
- * Usage example:
- *
- * ```
- * use yii\web\Controller;
- *
- * class ProductController extends Controller
- * {
- *     public function actionDelete(): array
- *     {
- *         $id = $this->request->getPostInt('id');
- *
- *         // There's some logic here. For example, calling a service class method to delete
- *         // a product with the parameter `$id`.
- *     }
- * }
- * ```
- *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  */
 class Request extends BaseRequest

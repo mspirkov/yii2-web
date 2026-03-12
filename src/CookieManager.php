@@ -23,15 +23,6 @@ use yii\web\Request;
  * - {@see CookieManagerInterface::remove()} - removes a cookie.
  * - {@see CookieManagerInterface::removeAll()} - removes all cookies.
  *
- * Usage example:
- *
- * ```
- * $this->cookieManager->add([
- *     'name' => 'someCookieName',
- *     'value' => 'someCookieValue',
- * ]);
- * ```
- *
  * @author Maksim Spirkov <spirkov.2001@mail.ru>
  *
  * @immutable
