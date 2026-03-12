@@ -26,12 +26,6 @@ trait HtmlTrait
      * deleting an item. This allows you to easily perform a request without manually creating
      * a form, hidden inputs, etc.
      *
-     * Usage example:
-     *
-     * ```
-     * <?= Html::singleButtonForm(['product/delete'], ['id' => $product->id], 'Delete'); ?>
-     * ```
-     *
      * @param string|array<array-key, mixed> $action The form action URL. For more information
      * see {@see Html::beginForm()}.
      * @param array<string, string|null> $data Data in terms of name-value pairs. These data are sent
