@@ -36,7 +36,7 @@ to the `require` section of your `composer.json` file.
 - [Html](#html)
 - [HtmlTrait](#htmltrait)
 - [Request](#request)
-- [TypedRequestParametersTrait](#typedrequestparameterstrait)
+- [RequestTrait](#typedrequestparameterstrait)
 
 ### CookieManager
 
@@ -159,7 +159,8 @@ Usage example:
 
 ### Request
 
-A wrapper for `\yii\web\Request` that uses the capabilities of [TypedRequestParametersTrait](#typedrequestparameterstrait).
+A wrapper for `\yii\web\Request` that uses the capabilities of [RequestTrait](#typedrequestparameterstrait)
+and allows you to use them without having to create your own basic `Request`.
 
 #### Configuration
 
@@ -188,19 +189,22 @@ You also need to specify this class in `__autocomplete.php` so that the IDE know
 <?php
 
 use yii\BaseYii;
-use yii\web\Application;
+use yii\web\Application as BaseWebApplication;
+use yii\console\Application as BaseConsoleApplication;
 use MSpirkov\Yii2\Web\Request;
 
 final class Yii extends BaseYii
 {
-    /** @var __Application */
+    /** @var __WebApplication|__ConsoleApplication  */
     public static $app;
 }
 
 /**
  * @property-read Request $request
  */
-final class __Application extends Application {}
+final class __WebApplication extends BaseWebApplication {}
+
+final class __ConsoleApplication extends BaseConsoleApplication {}
 ```
 
 #### Basic Controller (Optional)
@@ -209,11 +213,12 @@ I also recommend that you create your own basic controller and specify `Request`
 
 ```php
 use MSpirkov\Yii2\Web\Request;
+use yii\web\Controller as BaseController;
 
 /**
  * @property Request $request
  */
-abstract class AbstractController extends \yii\web\Controller
+abstract class AbstractController extends BaseController
 {
     public function init(): void
     {
@@ -247,7 +252,7 @@ final class ProductController extends AbstractController
 }
 ```
 
-### TypedRequestParametersTrait
+### RequestTrait
 
 A trait for easier handling of **GET** and **POST** parameters.
 
@@ -271,10 +276,10 @@ It contains the following methods:
 #### Usage example
 
 ```php
-use MSpirkov\Yii2\Web\TypedRequestParametersTrait;
+use MSpirkov\Yii2\Web\RequestTrait;
 
 class Request extends \yii\web\Request
 {
-    use TypedRequestParametersTrait;
+    use RequestTrait;
 }
 ```
