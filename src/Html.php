@@ -7,7 +7,7 @@ namespace MSpirkov\Yii2\Web;
 use yii\helpers\Html as BaseHtml;
 
 /**
- * A wrapper for {@see BaseRequest}.
+ * A wrapper for {@see BaseHtml}.
  *
  * It contains the following methods:
  *
