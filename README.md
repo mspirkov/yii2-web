@@ -87,7 +87,7 @@ use MSpirkov\Yii2\Web\CookieManagerInterface;
 final readonly class ExampleService
 {
     public function __construct(
-        private readonly CookieManagerInterface $cookieManager,
+        private CookieManagerInterface $cookieManager,
     ) {}
 
     public function addCookie(): void
