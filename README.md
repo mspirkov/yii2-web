@@ -35,6 +35,7 @@ to the `require` section of your `composer.json` file.
 - [CookieManager](#cookiemanager)
 - [HtmlTrait](#htmltrait)
 - [Request](#request)
+- [TypedRequestParametersTrait](#typedrequestparameterstrait)
 
 ### CookieManager
 
@@ -139,24 +140,7 @@ Usage example:
 
 ### Request
 
-A wrapper for `\yii\web\Request` for easier handling of **GET** and **POST** parameters.
-
-> [!IMPORTANT]
->
-> All parameter retrieval methods also allow you to mark parameters as required using the `$required` parameter.
-
-It contains the following methods:
-
-- `getGetInt` - gets the value of a **GET** parameter by its name and tries to convert it to an integer.
-- `getGetFloat` - gets the value of the **GET** parameter by its name and tries to convert it to a floating-point number.
-- `getGetBool` - gets the value of the **GET** parameter by its name and tries to convert it to a boolean.
-- `getGetString` - gets the value of the **GET** parameter by its name and tries to convert it to a string.
-- `getGetArray` - gets the value of the **GET** parameter by its name and tries to convert it to an array.
-- `getPostInt` - gets the value of a **POST** parameter by its name and tries to convert it to an integer.
-- `getPostFloat` - gets the value of the **POST** parameter by its name and tries to convert it to a floating-point number.
-- `getPostBool` - gets the value of the **POST** parameter by its name and tries to convert it to a boolean.
-- `getPostString` - gets the value of the **POST** parameter by its name and tries to convert it to a string.
-- `getPostArray` - gets the value of the **POST** parameter by its name and checks that the value is an array.
+A wrapper for `\yii\web\Request` that uses the capabilities of [TypedRequestParametersTrait](#typedrequestparameterstrait).
 
 #### Configuration
 
@@ -241,5 +225,37 @@ class ProductController extends Controller
 
         return $this->service->delete($this->request->getPostInt('id'));
     }
+}
+```
+
+### TypedRequestParametersTrait
+
+A trait for easier handling of **GET** and **POST** parameters.
+
+> [!IMPORTANT]
+>
+> All parameter retrieval methods also allow you to mark parameters as required using the `$required` parameter.
+
+It contains the following methods:
+
+- `getGetInt` - gets the value of a **GET** parameter by its name and tries to convert it to an integer.
+- `getGetFloat` - gets the value of the **GET** parameter by its name and tries to convert it to a floating-point number.
+- `getGetBool` - gets the value of the **GET** parameter by its name and tries to convert it to a boolean.
+- `getGetString` - gets the value of the **GET** parameter by its name and tries to convert it to a string.
+- `getGetArray` - gets the value of the **GET** parameter by its name and tries to convert it to an array.
+- `getPostInt` - gets the value of a **POST** parameter by its name and tries to convert it to an integer.
+- `getPostFloat` - gets the value of the **POST** parameter by its name and tries to convert it to a floating-point number.
+- `getPostBool` - gets the value of the **POST** parameter by its name and tries to convert it to a boolean.
+- `getPostString` - gets the value of the **POST** parameter by its name and tries to convert it to a string.
+- `getPostArray` - gets the value of the **POST** parameter by its name and checks that the value is an array.
+
+#### Usage example
+
+```php
+use MSpirkov\Yii2\Web\TypedRequestParametersTrait;
+
+class Request extends \yii\web\Request
+{
+    use TypedRequestParametersTrait;
 }
 ```
