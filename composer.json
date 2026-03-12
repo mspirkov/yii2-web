@@ -5,7 +5,8 @@
         "yii",
         "yii2",
         "web",
-        "cookie"
+        "cookie",
+        "html"
     ],
     "type": "library",
     "minimum-stability": "dev",
@@ -36,7 +37,10 @@
         "rector/rector": "^2.2",
         "phpstan/phpstan-strict-rules": "^2.0",
         "shipmonk/phpstan-rules": "^4.2",
-        "spaze/phpstan-disallowed-calls": "^4.7"
+        "spaze/phpstan-disallowed-calls": "^4.7",
+        "yiisoft/yii2-bootstrap": "^2.0",
+        "yiisoft/yii2-bootstrap4": "^2.0",
+        "yiisoft/yii2-bootstrap5": "^2.0"
     },
     "repositories": [
         {
@@ -44,6 +48,11 @@
             "url": "https://asset-packagist.org"
         }
     ],
+    "suggest": {
+        "yiisoft/yii2-bootstrap": "To use classes related to Bootstrap3",
+        "yiisoft/yii2-bootstrap4": "To use classes related to Bootstrap4",
+        "yiisoft/yii2-bootstrap5": "To use classes related to Bootstrap5"
+    },
     "autoload": {
         "psr-4": {
             "MSpirkov\\Yii2\\Web\\": "src/"

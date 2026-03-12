@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MSpirkov\Yii2\Web\Tests\Request;
 
-class RequestDataProvider
+final class RequestDataProvider
 {
     public const TEST_PARAM_NAME = 'requestTestTest';
     public const TEST_IP = '192.52.193.0';

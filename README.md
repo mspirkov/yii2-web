@@ -33,6 +33,7 @@ to the `require` section of your `composer.json` file.
 ## Components
 
 - [CookieManager](#cookiemanager)
+- [Html](#html)
 - [HtmlTrait](#htmltrait)
 - [Request](#request)
 - [TypedRequestParametersTrait](#typedrequestparameterstrait)
@@ -99,6 +100,25 @@ final readonly class ExampleService
     }
 }
 ```
+
+### Html
+
+This package contains 4 helpers:
+
+1. `MSpirkov\Yii2\Web\Html` - a helper that extends `yii\web\Html`
+2. `MSpirkov\Yii2\Web\Bootstrap3\Html` - a helper that extends `yii\bootstrap\Html`
+3. `MSpirkov\Yii2\Web\Bootstrap4\Html` - a helper that extends `yii\bootstrap4\Html`
+4. `MSpirkov\Yii2\Web\Bootstrap5\Html` - a helper that extends `yii\bootstrap5\Html`
+
+> [!IMPORTANT]
+>
+> To use Bootstrap helpers, you need to install the corresponding packages (
+> [yiisoft/yii2-bootstrap](https://github.com/yiisoft/yii2-bootstrap),
+> [yii2-bootstrap4](https://github.com/yiisoft/yii2-bootstrap4),
+> or [yii2-bootstrap5](https://github.com/yiisoft/yii2-bootstrap5))
+
+All of them contain methods from the [HtmlTrait](#htmltrait) and allow you to use its features without
+having to create your own basic helper.
 
 ### HtmlTrait
 

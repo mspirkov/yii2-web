@@ -8,7 +8,7 @@ use MSpirkov\Yii2\Web\Request;
 use MSpirkov\Yii2\Web\Tests\AbstractTestCase;
 use yii\web\BadRequestHttpException;
 
-class RequestTest extends AbstractTestCase
+final class RequestTest extends AbstractTestCase
 {
     private Request $request;
 
