@@ -7,7 +7,7 @@ namespace MSpirkov\Yii2\Web\Tests;
 use MSpirkov\Yii2\Web\CookieManager;
 use yii\web\Cookie;
 
-class CookieManagerTest extends AbstractTestCase
+final class CookieManagerTest extends AbstractTestCase
 {
     private const NON_EXISTENT_COOKIE_NAME = 'nonExistentCookieName';
 

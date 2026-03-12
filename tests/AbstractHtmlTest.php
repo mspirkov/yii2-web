@@ -2,14 +2,20 @@
 
 declare(strict_types=1);
 
-namespace MSpirkov\Yii2\Web\Tests\HtmlTrait;
+namespace MSpirkov\Yii2\Web\Tests;
 
-use MSpirkov\Yii2\Web\Tests\AbstractTestCase;
+use MSpirkov\Yii2\Web\Html as BaseHtml;
+use MSpirkov\Yii2\Web\Bootstrap3\Html as Bootstrap3Html;
+use MSpirkov\Yii2\Web\Bootstrap4\Html as Bootstrap4Html;
+use MSpirkov\Yii2\Web\Bootstrap5\Html as Bootstrap5Html;
 use yii\base\Module;
 
-class HtmlTraitTest extends AbstractTestCase
+abstract class AbstractHtmlTest extends AbstractTestCase
 {
     private const TEST_ACTION = 'https://test.com';
+
+    /** @var class-string<BaseHtml|Bootstrap3Html|Bootstrap4Html|Bootstrap5Html> */
+    protected string $htmlClass;
 
     /**
      * @dataProvider provideSingleButtonFormData
@@ -27,7 +33,7 @@ class HtmlTraitTest extends AbstractTestCase
         array $formOptions,
         string $expectedResult
     ): void {
-        $content = Html::singleButtonForm(
+        $content = $this->htmlClass::singleButtonForm(
             $action,
             $data,
             $buttonContent,
@@ -126,7 +132,7 @@ class HtmlTraitTest extends AbstractTestCase
 
     public function testSingleButtonFormWithMinParams(): void
     {
-        $content = Html::singleButtonForm(self::TEST_ACTION, ['test' => '123', 'testTest' => '456'], 'Go');
+        $content = $this->htmlClass::singleButtonForm(self::TEST_ACTION, ['test' => '123', 'testTest' => '456'], 'Go');
 
         $this->assertSameHtmlContent(
             <<<HTML
@@ -144,7 +150,7 @@ class HtmlTraitTest extends AbstractTestCase
     {
         $this->application->controller = new TestController('test', new Module('module'));
 
-        $content = Html::singleButtonForm(['test/run'], ['test' => '123', 'testTest' => '456'], 'Go');
+        $content = $this->htmlClass::singleButtonForm(['test/run'], ['test' => '123', 'testTest' => '456'], 'Go');
 
         $this->assertSameHtmlContent(
             <<<HTML
