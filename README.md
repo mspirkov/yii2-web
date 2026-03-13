@@ -36,7 +36,7 @@ to the `require` section of your `composer.json` file.
 - [Html](#html)
 - [HtmlTrait](#htmltrait)
 - [Request](#request)
-- [RequestTrait](#typedrequestparameterstrait)
+- [RequestTrait](#requesttrait)
 
 ### CookieManager
 
@@ -159,7 +159,7 @@ Usage example:
 
 ### Request
 
-A wrapper for `\yii\web\Request` that uses the capabilities of [RequestTrait](#typedrequestparameterstrait)
+A wrapper for `\yii\web\Request` that uses the capabilities of [RequestTrait](#requesttrait)
 and allows you to use them without having to create your own basic `Request`.
 
 #### Configuration
