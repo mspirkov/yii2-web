@@ -112,7 +112,7 @@ This package contains 4 helpers:
 
 > [!IMPORTANT]
 >
-> To use Bootstrap helpers, you need to install the corresponding packages ([yiisoft/yii2-bootstrap](https://github.com/yiisoft/yii2-bootstrap),
+> To use Bootstrap helpers, you need to install the corresponding packages ([yii2-bootstrap](https://github.com/yiisoft/yii2-bootstrap),
 > [yii2-bootstrap4](https://github.com/yiisoft/yii2-bootstrap4),
 > or [yii2-bootstrap5](https://github.com/yiisoft/yii2-bootstrap5))
 
