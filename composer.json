@@ -41,7 +41,8 @@
         "yiisoft/yii2-bootstrap": "^2.0",
         "yiisoft/yii2-bootstrap4": "^2.0",
         "yiisoft/yii2-bootstrap5": "^2.0",
-        "ergebnis/phpstan-rules": "^2.13"
+        "ergebnis/phpstan-rules": "^2.13",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.37"
     },
     "repositories": [
         {
