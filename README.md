@@ -247,7 +247,7 @@ final class ProductController extends AbstractController
     {
         $this->response->format = Response::FORMAT_JSON;
 
-        return $this->service->delete($this->request->getPostInt('id'));
+        return $this->service->delete($this->request->getPostInt('id', required: true));
     }
 }
 ```
