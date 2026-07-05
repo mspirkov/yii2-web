@@ -1,4 +1,5 @@
 includes:
+    - vendor/mspirkov/yii2-phpstan-rules/rules.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/shipmonk/phpstan-rules/rules.neon
@@ -52,3 +53,15 @@ parameters:
             count: 1
             reportUnmatched: false # fails only for PHP > 7.4
             path: src/Request.php
+
+        # This is done intentionally here
+        -
+            message: '#^Direct use of superglobal \$_COOKIE is forbidden\. Use yii\\web\\Request\:\:cookies for reading cookies or yii\\web\\Response\:\:cookies for writing them instead\.$#'
+            identifier: mspirkovYii2Rules.noDirectSuperglobals
+            path: src/CookieManager.php
+
+        # This is done intentionally here
+        -
+            message: '#^Direct use of superglobal \$_COOKIE is forbidden\. Use yii\\web\\Request\:\:cookies for reading cookies or yii\\web\\Response\:\:cookies for writing them instead\.$#'
+            identifier: mspirkovYii2Rules.noDirectSuperglobals
+            path: tests/CookieManagerTest.php
