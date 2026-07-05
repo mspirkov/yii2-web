@@ -17,4 +17,4 @@ runs:
 
     - name: Install dependencies
       shell: "sh"
-      run: composer install
+      run: COMPOSER_ALLOW_UNSAFE_PHAR_METADATA=1 composer install
