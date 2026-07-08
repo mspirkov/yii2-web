@@ -30,6 +30,10 @@ parameters:
             superclassToSuffixMapping!:
                 \MSpirkov\Yii2\Web\Tests\AbstractTestCase: Test
 
+    mspirkovYii2Rules:
+        noForbiddenYiiAppProperties:
+            enabled: false
+
     ergebnis:
         allRules: false
         final:
@@ -65,3 +69,8 @@ parameters:
             message: '#^Direct use of superglobal \$_COOKIE is forbidden\. Use yii\\web\\Request\:\:cookies for reading cookies or yii\\web\\Response\:\:cookies for writing them instead\.$#'
             identifier: mspirkovYii2Rules.noDirectSuperglobals
             path: tests/CookieManagerTest.php
+
+        # For the convenience of testing, disable the rule
+        -
+            identifier: mspirkovYii2Rules.noYiiAppPropertyMutation
+            path: tests
