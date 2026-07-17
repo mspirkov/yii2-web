@@ -283,3 +283,7 @@ class Request extends \yii\web\Request
     use RequestTrait;
 }
 ```
+
+## Support
+
+If this project is useful to you, consider giving it a ⭐ on [GitHub](https://github.com/mspirkov/yii2-web) — it helps others discover it.
