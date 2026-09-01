@@ -361,7 +361,7 @@ final class RequestTest extends AbstractTestCase
      */
     private function setQueryParams($paramValue): void
     {
-        $this->request->setQueryParams([RequestDataProvider::TEST_PARAM_NAME => $paramValue]);
+        $this->request->queryParams = [RequestDataProvider::TEST_PARAM_NAME => $paramValue];
     }
 
     /**
@@ -369,7 +369,7 @@ final class RequestTest extends AbstractTestCase
      */
     private function setBodyParams($paramValue): void
     {
-        $this->request->setBodyParams([RequestDataProvider::TEST_PARAM_NAME => $paramValue]);
+        $this->request->bodyParams = [RequestDataProvider::TEST_PARAM_NAME => $paramValue];
     }
 
     private function expectMissingParamException(): void
