@@ -1,5 +1,5 @@
 includes:
-    - vendor/mspirkov/yii2-phpstan-rules/rules.neon
+    - vendor/mspirkov/yii2-phpstan/extension.neon
     - vendor/phpstan/phpstan-strict-rules/rules.neon
     - vendor/phpstan/phpstan-phpunit/extension.neon
     - vendor/shipmonk/phpstan-rules/rules.neon
@@ -30,7 +30,7 @@ parameters:
             superclassToSuffixMapping!:
                 \MSpirkov\Yii2\Web\Tests\AbstractTestCase: Test
 
-    mspirkovYii2Rules:
+    mspirkovYii2:
         noForbiddenYiiAppProperties:
             enabled: false
 
@@ -61,16 +61,16 @@ parameters:
         # This is done intentionally here
         -
             message: '#^Direct use of superglobal \$_COOKIE is forbidden\. Use yii\\web\\Request\:\:cookies for reading cookies or yii\\web\\Response\:\:cookies for writing them instead\.$#'
-            identifier: mspirkovYii2Rules.noDirectSuperglobals
+            identifier: mspirkovYii2.noDirectSuperglobals
             path: src/CookieManager.php
 
         # This is done intentionally here
         -
             message: '#^Direct use of superglobal \$_COOKIE is forbidden\. Use yii\\web\\Request\:\:cookies for reading cookies or yii\\web\\Response\:\:cookies for writing them instead\.$#'
-            identifier: mspirkovYii2Rules.noDirectSuperglobals
+            identifier: mspirkovYii2.noDirectSuperglobals
             path: tests/CookieManagerTest.php
 
         # For the convenience of testing, disable the rule
         -
-            identifier: mspirkovYii2Rules.noYiiAppPropertyMutation
+            identifier: mspirkovYii2.noYiiAppPropertyMutation
             path: tests
